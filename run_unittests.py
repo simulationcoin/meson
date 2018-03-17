@@ -510,7 +510,8 @@ class BasePlatformTests(unittest.TestCase):
                 windows_proof_rmtree(path)
             except FileNotFoundError:
                 pass
-        os.environ = self.orig_env
+        os.environ.clear()
+        os.environ.update(self.orig_env)
         super().tearDown()
 
     def _run(self, command, workdir=None):
